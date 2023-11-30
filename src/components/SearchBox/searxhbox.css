@@ -1,0 +1,12 @@
+.search {
+   width: 60%;
+   height: 1.5rem;
+   border-radius: 1rem;
+   padding-left: 1rem;
+}
+
+.search-wrapper {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

@@ -1,0 +1,49 @@
+@import url("../../utils/colors.css");
+
+.header {
+   max-width: 100%;
+   padding: 1.5rem;
+   background-image: linear-gradient(
+      to bottom right,
+      var(--primary-color),
+      var(--secondary-color)
+   );
+
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.nav-links {
+   width: max-content;
+   cursor: pointer;
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 1.25rem;
+}
+
+.nav-links > span {
+   font-size: 1.15rem;
+}
+
+.logo {
+   width: 2.5rem;
+   aspect-ratio: 1/1;
+}
+
+.logo-wrapper {
+   font-family: "Dancing Script", cursive, sans-serif;
+   font-size: 1.6rem;
+   cursor: pointer;
+
+   display: flex;
+   align-items: center;
+}
+
+.logo-wrapper > span {
+   padding-left: 5px;
+}
