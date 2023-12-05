@@ -1,20 +1,32 @@
 import React from "react";
+import { IMG_URL } from "../../utils/constants";
 import "./card.css";
 
-function Card() {
+function Card({ data }) {
+   const {
+      info: {
+         name,
+         cloudinaryImageId,
+         cuisines,
+         areaName,
+         avgRating,
+         sla: { deliveryTime },
+      },
+   } = data;
+
    return (
       <div className="card">
          <img
             className="card-img"
-            src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/f01666ac73626461d7455d9c24005cd4"
+            src={`${IMG_URL}${cloudinaryImageId}`}
             alt="food item"
          />
-         <h3>Restaurant name</h3>
+         <h3>{name}</h3>
          <div>
-            <span>4.5</span> • <span>30 mins</span>
+            <span>{avgRating}</span> • <span>{deliveryTime} mins</span>
          </div>
-         <div>Cuisine</div>
-         <div>Address</div>
+         <div>{cuisines.join(", ")}</div>
+         <div>{areaName}</div>
       </div>
    );
 }

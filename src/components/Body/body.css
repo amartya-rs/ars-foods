@@ -1,7 +1,19 @@
 .body {
-   padding: 2rem;
+   padding: 2.5rem;
 }
 
 .card-container {
+   margin: auto;
    margin-top: 2rem;
+
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: start;
+   gap: 1rem;
+}
+
+.filter-wrapper {
+   display: flex;
+   justify-content: center;
+   gap: 1.5rem;
 }

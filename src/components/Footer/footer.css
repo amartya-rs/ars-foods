@@ -37,6 +37,8 @@
 }
 
 .footer-container {
+   margin-bottom: 2.25rem;
+
    display: flex;
    flex-direction: column;
    gap: 0.5rem;

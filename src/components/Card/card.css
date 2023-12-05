@@ -1,8 +1,9 @@
 @import url("../../utils/colors.css");
 
 .card {
+   min-width: 15rem;
    width: 15rem;
-   height: 20rem;
+   height: 25rem;
    cursor: pointer;
    border: 1px solid var(--secondary-color);
    border-radius: 0.5rem;
