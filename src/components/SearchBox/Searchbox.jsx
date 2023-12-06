@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./searxhbox.css";
 
-export function Searchbox({ width }) {
+export function Searchbox({ width, setRestaurantData, allRestaurantData }) {
+   const [search, setSearch] = useState("");
+
    useEffect(() => {
       setWidth();
    }, [width]);
@@ -17,9 +19,30 @@ export function Searchbox({ width }) {
       }
    };
 
+   const searchHandler = (e) => {
+      const searchTerm = e.target.value;
+      console.log(searchTerm);
+      // set all data when search term is empty
+      if (!searchTerm) {
+         setRestaurantData(allRestaurantData);
+      }
+      setSearch(searchTerm);
+
+      const filteredBySearchTerm = allRestaurantData.filter(({ info }) =>
+         info.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setRestaurantData(filteredBySearchTerm);
+   };
+
    return (
       <div className={`search-wrapper`}>
-         <input className="search" type="text" placeholder="search..." />
+         <input
+            className="search"
+            type="text"
+            placeholder="search..."
+            onChange={searchHandler}
+            value={search}
+         />
       </div>
    );
 }
