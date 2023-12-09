@@ -1,6 +1,7 @@
 import React from "react";
 import "./header.css";
 import Logo from "../../asset/logo.jpeg";
+import { Link } from "react-router-dom";
 
 function Header({ isLoggedIn, setIsLoggedIn }) {
    return (
@@ -10,9 +11,10 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
             <span>ARS Foods</span>
          </div>
          <div className="nav-links">
-            <span>Home</span>
+            <Link to="/">Home</Link>
             <span>About Us</span>
-            <span>Contact Us</span>
+            <Link to="/contact">Contact Us</Link>
+            <span></span>
             {isLoggedIn ? (
                <button onClick={() => setIsLoggedIn(false)}>Logout</button>
             ) : (

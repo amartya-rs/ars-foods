@@ -2,7 +2,7 @@ import React from "react";
 import { IMG_URL } from "../../utils/constants";
 import "./card.css";
 
-function Card({ data }) {
+function Card({ data, clickHandler }) {
    const {
       info: {
          name,
@@ -15,7 +15,7 @@ function Card({ data }) {
    } = data;
 
    return (
-      <div className="card">
+      <div className="card" onClick={clickHandler}>
          <img
             className="card-img"
             src={`${IMG_URL}${cloudinaryImageId}`}
