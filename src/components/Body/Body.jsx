@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Searchbox } from "../SearchBox/Searchbox";
 import { Card } from "../Card/Card";
 import { Shimmer } from "../Shimmer/Shimmer.jsx";
@@ -9,6 +10,8 @@ function Body() {
    const [restaurantData, setRestaurantData] = useState([]);
    const [allRestaurantData, setAllRestaurantData] = useState([]);
    const [isLoading, setIsLoading] = useState(false);
+
+   const navigate = useNavigate();
 
    useEffect(() => {
       (async () => {
@@ -52,11 +55,17 @@ function Body() {
          <div className="card-container">
             {isLoading ? (
                <Shimmer />
-            ) : restaurantData.length === 0 ? (
+            ) : restaurantData?.length === 0 ? (
                <h3 className="not-found">No restaurant found</h3>
             ) : (
                restaurantData.map((item) => (
-                  <Card key={item.info.id} data={item} />
+                  <Card
+                     clickHandler={() =>
+                        navigate(`/restaurant/${item.info.id}`)
+                     }
+                     key={item.info.id}
+                     data={item}
+                  />
                ))
             )}
          </div>

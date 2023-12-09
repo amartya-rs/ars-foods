@@ -44,8 +44,11 @@
    gap: 0.5rem;
 }
 
-.footer-container > span,
-img {
+.footer-container > span {
+   cursor: pointer;
+}
+
+.footer-container > img {
    cursor: pointer;
 }
 
