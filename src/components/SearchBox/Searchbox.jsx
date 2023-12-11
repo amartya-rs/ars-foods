@@ -28,7 +28,7 @@ export function Searchbox({ width, setRestaurantData, allRestaurantData }) {
       }
       setSearch(searchTerm);
 
-      const filteredBySearchTerm = allRestaurantData.filter(({ info }) =>
+      const filteredBySearchTerm = allRestaurantData?.filter(({ info }) =>
          info.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setRestaurantData(filteredBySearchTerm);
