@@ -4,41 +4,46 @@ import { Searchbox } from "../SearchBox/Searchbox";
 import { Card } from "../Card/Card";
 import { Shimmer } from "../Shimmer/Shimmer.jsx";
 import { SWIGGY_API } from "../../utils/constants.js";
+import { useFetch } from "../../utils/custom hooks/useFetch.js";
 import "./body.css";
 
 function Body() {
-   const [restaurantData, setRestaurantData] = useState([]);
+   // const [restaurantData, setRestaurantData] = useState([]);
+   // const [isLoading, setIsLoading] = useState(false);
    const [allRestaurantData, setAllRestaurantData] = useState([]);
-   const [isLoading, setIsLoading] = useState(false);
 
    const navigate = useNavigate();
 
-   useEffect(() => {
-      (async () => {
-         try {
-            setIsLoading(true);
-            const data = await fetch(SWIGGY_API);
-            const dataInJson = await data.json();
-            const response =
-               dataInJson?.data?.cards[5]?.card?.card?.gridElements
-                  ?.infoWithStyle?.restaurants;
-            setRestaurantData(response);
-            setAllRestaurantData(response);
-            setIsLoading(false);
-         } catch (error) {
-            alert(error);
-         } finally {
-            setIsLoading(false);
-         }
-      })();
-   }, []);
-
-   const filterByRatingHandler = () => {
-      const filtedData = restaurantData.filter(
-         (item) => item.info.avgRating > 4.1
-      );
-      setRestaurantData(filtedData);
+   const extractRestaurantData = (data) => {
+      return data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+         ?.restaurants;
    };
+
+   const {
+      data: restaurantData,
+      isLoading,
+      setData: setRestaurantData,
+   } = useFetch(SWIGGY_API, null, extractRestaurantData, setAllRestaurantData);
+
+   // useEffect(() => {
+   //    (async () => {
+   //       try {
+   //          setIsLoading(true);
+   //          const data = await fetch(SWIGGY_API);
+   //          const dataInJson = await data.json();
+   //          const response =
+   //             dataInJson?.data?.cards[5]?.card?.card?.gridElements
+   //                ?.infoWithStyle?.restaurants;
+   //          setRestaurantData(response);
+   //          setAllRestaurantData(response);
+   //          setIsLoading(false);
+   //       } catch (error) {
+   //          alert(error);
+   //       } finally {
+   //          setIsLoading(false);
+   //       }
+   //    })();
+   // }, []);
 
    return (
       <div className="body">
@@ -48,9 +53,6 @@ function Body() {
                allRestaurantData={allRestaurantData}
                setRestaurantData={setRestaurantData}
             />
-            <button onClick={filterByRatingHandler}>
-               Filter top restaurants
-            </button>
          </div>
          <div className="card-container">
             {isLoading ? (
@@ -58,7 +60,7 @@ function Body() {
             ) : restaurantData?.length === 0 ? (
                <h3 className="not-found">No restaurant found</h3>
             ) : (
-               restaurantData.map((item) => (
+               restaurantData?.map((item) => (
                   <Card
                      clickHandler={() =>
                         navigate(`/restaurant/${item.info.id}`)
