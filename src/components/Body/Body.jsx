@@ -4,8 +4,8 @@ import { Searchbox } from "../SearchBox/Searchbox";
 import { Card } from "../Card/Card";
 import { Shimmer } from "../Shimmer/Shimmer.jsx";
 import { SWIGGY_API } from "../../utils/constants.js";
-import "./body.css";
 import { useFetch } from "../../utils/custom hooks/useFetch.js";
+import "./body.css";
 
 function Body() {
    // const [restaurantData, setRestaurantData] = useState([]);
