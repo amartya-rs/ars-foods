@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ContactPage } from "./pages/ContactPage";
+// import { ContactPage } from "./pages/ContactPage";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 import { App } from "./app";
 import { Body } from "./components/Body/Body";
 import { MenuPage } from "./pages/MenuPage/MenuPage";
+
+const ContactUs = lazy(() => import("./pages/ContactPage.jsx"));
 
 const appRouter = createBrowserRouter([
    {
@@ -19,7 +21,11 @@ const appRouter = createBrowserRouter([
          },
          {
             path: "/contact",
-            element: <ContactPage />,
+            element: (
+               <Suspense loading={<h2>Loading...</h2>}>
+                  <ContactUs />
+               </Suspense>
+            ),
          },
          {
             path: "/restaurant/:resId",
