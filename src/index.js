@@ -7,7 +7,7 @@ import { App } from "./app";
 import { Body } from "./components/Body/Body";
 import { MenuPage } from "./pages/MenuPage/MenuPage";
 
-const ContactUs = lazy(() => import("./pages/ContactPage.jsx"));
+const ContactUs = lazy(() => import("./pages/ContactPage/ContactPage.jsx"));
 
 const appRouter = createBrowserRouter([
    {

@@ -1,0 +1,38 @@
+@import url("../../utils//colors.css");
+
+.menu-title {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   cursor: pointer;
+   height: 4rem;
+}
+
+.menu-title > h2 {
+   margin: 0;
+}
+
+.add-btn-overlay {
+   position: absolute;
+   top: 60%;
+   right: 15%;
+}
+
+.add-btn {
+   padding: 5px;
+   background-color: var(--secondary-color);
+   border-radius: 0.4rem;
+   height: 2.5rem;
+   width: 6rem;
+   margin: auto 0;
+   z-index: 10;
+}
+
+.btn-only {
+   margin-right: 1.25rem;
+}
+
+.img-wrapper {
+   position: relative;
+}
