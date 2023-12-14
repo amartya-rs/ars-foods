@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./menu-page.css";
-import { IMAGE_URL } from "../../utils/constants";
 import { useFetch } from "../../utils/custom hooks/useFetch";
+import { MenuSection } from "../../components/MenuSection/MenuSection";
 
 export const MenuPage = () => {
    // const [resInfo, setResInfo] = useState();
@@ -19,8 +19,9 @@ export const MenuPage = () => {
    );
 
    const menu =
-      resInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-         ?.card?.itemCards;
+      resInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+         (ele) => ele.card.card["@type"].includes(".ItemCategory")
+      );
    const resData = resInfo?.cards?.[0]?.card?.card?.info;
 
    // useEffect(() => {
@@ -39,20 +40,8 @@ export const MenuPage = () => {
       <div className="menu-page">
          <h2>{resData?.name}</h2>
          <div className="menu-item-wrapper">
-            {menu?.map(({ card }) => (
-               <div className="item" key={card?.info?.id}>
-                  <div>
-                     <h3 className="item-name">{card?.info?.name}</h3>
-                     <span>₹ {card?.info?.price / 100}</span>
-                  </div>
-                  <div>
-                     <img
-                        className="item-img"
-                        src={IMAGE_URL + card?.info?.imageId}
-                        alt="food item"
-                     />
-                  </div>
-               </div>
+            {menu?.map((item) => (
+               <MenuSection item={item} />
             ))}
          </div>
       </div>
