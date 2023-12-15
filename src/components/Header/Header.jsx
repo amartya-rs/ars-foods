@@ -1,9 +1,12 @@
 import React from "react";
-import "./header.css";
-import Logo from "../../asset/logo.jpeg";
 import { Link } from "react-router-dom";
+import Logo from "../../asset/logo.jpeg";
+import { useLogin } from "../../context/login-context";
+import "./header.css";
 
-function Header({ isLoggedIn, setIsLoggedIn }) {
+function Header() {
+   const { isLoggedIn, setIsLoggedIn } = useLogin();
+
    return (
       <div className="header">
          <div className="logo-wrapper">
