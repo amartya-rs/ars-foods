@@ -6,6 +6,8 @@ import { MenuSection } from "../../components/MenuSection/MenuSection";
 
 export const MenuPage = () => {
    // const [resInfo, setResInfo] = useState();
+   const [currentMenu, setCurrentMenu] = useState();
+
    const { resId } = useParams();
    const MENU_API = `https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.8374281732232&lng=91.28818150609732&restaurantId=${resId}&catalog_qa=undefined&submitAction=ENTER`;
 
@@ -41,7 +43,12 @@ export const MenuPage = () => {
          <h2>{resData?.name}</h2>
          <div className="menu-item-wrapper">
             {menu?.map((item) => (
-               <MenuSection item={item} />
+               <MenuSection
+                  key={item?.card?.card?.title}
+                  item={item}
+                  setCurrentMenu={setCurrentMenu}
+                  currentMenu={currentMenu}
+               />
             ))}
          </div>
       </div>

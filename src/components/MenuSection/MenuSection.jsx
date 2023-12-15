@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IMAGE_URL } from "../../utils/constants.js";
 import UpArrow from "../../asset/MaterialSymbolsKeyboardArrowUpRounded.svg";
 import DownArrow from "../../asset/MaterialSymbolsKeyboardArrowDownRounded.svg";
 import "./menu-section.css";
 
-export const MenuSection = ({ item }) => {
+export const MenuSection = ({ item, setCurrentMenu, currentMenu }) => {
    const [isOpen, setIsOpen] = useState(false);
+
+   useEffect(() => {
+      if (item?.card?.card?.title === currentMenu) {
+         setIsOpen(true);
+      } else {
+         setIsOpen(false);
+      }
+      console.log("render menu section effect");
+   }, [currentMenu]);
+
+   const clickHandler = () => {
+      if (currentMenu === item?.card?.card?.title) {
+         setIsOpen((prev) => !prev);
+      }
+      setCurrentMenu(item?.card?.card?.title);
+   };
 
    return (
       <div>
-         <div className="menu-title" onClick={() => setIsOpen((prev) => !prev)}>
+         <div className="menu-title" onClick={clickHandler}>
             <h2>
                {item?.card?.card?.title} ({item?.card?.card?.itemCards.length})
             </h2>
