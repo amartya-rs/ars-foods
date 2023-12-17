@@ -4,6 +4,8 @@
    "description": "",
    "scripts": {
       "test": "jest",
+      "test-cov": "jest --coverage",
+      "test-watch": "jest --watch",
       "start": "parcel index.html --open",
       "build": "parcel build index.html"
    },
