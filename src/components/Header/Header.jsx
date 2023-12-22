@@ -15,9 +15,8 @@ function Header() {
          </div>
          <div className="nav-links">
             <Link to="/">Home</Link>
-            <span>About Us</span>
+            <Link to="/">About Us</Link>
             <Link to="/contact">Contact Us</Link>
-            <span></span>
             {isLoggedIn ? (
                <button onClick={() => setIsLoggedIn(false)}>Logout</button>
             ) : (
