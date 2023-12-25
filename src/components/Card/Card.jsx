@@ -15,7 +15,7 @@ function Card({ data, clickHandler }) {
    } = data;
 
    return (
-      <div className="card" onClick={clickHandler}>
+      <div className="card" onClick={clickHandler} data-testid="card">
          <img
             className="card-img"
             src={`${IMG_URL}${cloudinaryImageId}`}
